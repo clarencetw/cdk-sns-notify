@@ -68,7 +68,7 @@
     "@aws-cdk/core" "1.72.0"
     constructs "^3.2.0"
 
-"@aws-cdk/aws-cloudwatch-actions@^1.71.0":
+"@aws-cdk/aws-cloudwatch-actions@*":
   version "1.72.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudwatch-actions/-/aws-cloudwatch-actions-1.72.0.tgz#b1f42a7ec8e9ac38e3d1d2e8ff932a323e211f35"
   integrity sha512-PKKa/24UkXnEm1+OK9Cq7G7hnMshzy7DGVLTdFVmECYPHSTVb+d32FEeZHnHXOE92P4LdwnMoDm225gdkbiXqg==
@@ -81,7 +81,7 @@
     "@aws-cdk/core" "1.72.0"
     constructs "^3.2.0"
 
-"@aws-cdk/aws-cloudwatch@1.72.0", "@aws-cdk/aws-cloudwatch@^1.71.0":
+"@aws-cdk/aws-cloudwatch@*", "@aws-cdk/aws-cloudwatch@1.72.0":
   version "1.72.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudwatch/-/aws-cloudwatch-1.72.0.tgz#e2a50b6a7eb68a97a4364d4a2f9e95ea760c9a11"
   integrity sha512-9EQrERHeA6CKVjgeQzGqcsVpRdwZQLDvj5y/ewJ30jdZtX9cjv5JWlvcMaJwPembYuYsMDdMmmLbkIsLg/mu8Q==
@@ -99,7 +99,7 @@
     "@aws-cdk/core" "1.72.0"
     constructs "^3.2.0"
 
-"@aws-cdk/aws-ec2@1.72.0", "@aws-cdk/aws-ec2@^1.71.0":
+"@aws-cdk/aws-ec2@*", "@aws-cdk/aws-ec2@1.72.0":
   version "1.72.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-ec2/-/aws-ec2-1.72.0.tgz#c3d62b1f50eae6d2349a2fe05c17dc84210be8a2"
   integrity sha512-CXWoz84pdSXXjVzrea9r5MG9cxGa+xjQFAjfmv42pCkbk6b5W+w6ljUuhR2I1TpS5VYcRM/VRzLg2Ux8QOJKrA==
@@ -267,7 +267,7 @@
     "@aws-cdk/core" "1.72.0"
     constructs "^3.2.0"
 
-"@aws-cdk/aws-sns@1.72.0", "@aws-cdk/aws-sns@^1.71.0":
+"@aws-cdk/aws-sns@*", "@aws-cdk/aws-sns@1.72.0":
   version "1.72.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-sns/-/aws-sns-1.72.0.tgz#66dbe81f7c33e205df96321bda1cff2cc0a1e6ef"
   integrity sha512-5qempQjQgkeWi1ne4acfl1LAKYviG4qG+0EOns7du1t+RLC2UEe6Mc46PwHrIkob1sdCvIHURSUSnQr9UnTCjQ==
@@ -5042,10 +5042,10 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.3.154:
-  version "0.3.154"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.154.tgz#b5548eb9ea41cf9c450ff990dc6b6109e228b156"
-  integrity sha512-ze/DRpSKcudpS9FMnlF0NrBN9Oz2llfqDaN5dZYYzgNYQFydOGjugveaX5NqK3k5FSPWTr0+kCgoAK8VwUDsDg==
+projen@^0.3.164:
+  version "0.3.164"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.164.tgz#3f8bbb562c9479ca20f35eeef6078ba88d91f02d"
+  integrity sha512-pbvhtLHKBsQlsOerc7P5IPWw9UD/EfDPQOwGU/0BYLATO2UCH/6KyxDY5xaSHli5YYHJliXwSldM6nGvCn0TQg==
   dependencies:
     "@iarna/toml" "^2.2.5"
     chalk "^4.1.0"

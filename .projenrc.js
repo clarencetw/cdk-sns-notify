@@ -22,6 +22,11 @@ const project = new AwsCdkConstructLibrary({
     "@aws-cdk/aws-lambda",
     "@aws-cdk/aws-sns-subscriptions",
     "@aws-cdk/aws-lambda-nodejs",
+    '@aws-cdk/aws-ec2',
+    '@aws-cdk/aws-sns',
+    '@aws-cdk/aws-cloudwatch',
+    '@aws-cdk/aws-cloudwatch-actions',
+    '@aws-cdk/aws-lambda-nodejs',
   ],
   peerDeps: [
     "@aws-cdk/core",
@@ -29,14 +34,12 @@ const project = new AwsCdkConstructLibrary({
     "@aws-cdk/aws-lambda",
     "@aws-cdk/aws-sns-subscriptions",
     "@aws-cdk/aws-lambda-nodejs",
-  ],
-  devDeps: [
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-sns',
     '@aws-cdk/aws-cloudwatch',
     '@aws-cdk/aws-cloudwatch-actions',
     '@aws-cdk/aws-lambda-nodejs',
-  ]
+  ],
 });
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'images', 'yarn-error.log'];

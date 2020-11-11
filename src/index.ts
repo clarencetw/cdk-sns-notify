@@ -1,9 +1,7 @@
-import * as path from 'path';
 import * as iam from '@aws-cdk/aws-iam';
-import { Runtime } from '@aws-cdk/aws-lambda';
-import * as subscriptions from "@aws-cdk/aws-sns-subscriptions";
+import * as lambda from '@aws-cdk/aws-lambda';
+import * as subscriptions from '@aws-cdk/aws-sns-subscriptions';
 import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda-nodejs';
 
 export interface SnsNotifyProps {
   readonly lineNotifyToken: string;
@@ -14,13 +12,10 @@ export class SnsNotify extends cdk.Construct {
 
   constructor(scope: cdk.Construct, id: string, props: SnsNotifyProps) {
     super(scope, id);
-    const lambdaFun = new lambda.NodejsFunction(this, 'lambda_fun', {
-      entry: path.join(__dirname, '../', 'function/index.js'),
-      runtime: Runtime.NODEJS_12_X,
-      externalModules: [
-        'aws-sdk',
-      ],
-      nodeModules: ['axios', 'form-data'],
+    const lambdaFun = new lambda.Function(this, 'lambda_fun', {
+      handler: 'index.handler',
+      runtime: lambda.Runtime.NODEJS_12_X,
+      code: lambda.Code.fromAsset('function'),
       environment: {
         LINE_NOTIFY_TOKEN: props.lineNotifyToken,
       },
