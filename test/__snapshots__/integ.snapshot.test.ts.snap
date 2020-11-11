@@ -1,0 +1,671 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integ snapshot validation 1`] = `
+Object {
+  "Outputs": Object {
+    "instance": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "InstanceC1063A87",
+          "PublicDnsName",
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "AssetParameters7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7dArtifactHashF303A0DB": Object {
+      "Description": "Artifact hash for asset \\"7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7d\\"",
+      "Type": "String",
+    },
+    "AssetParameters7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7dS3Bucket71E26373": Object {
+      "Description": "S3 bucket for asset \\"7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7d\\"",
+      "Type": "String",
+    },
+    "AssetParameters7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7dS3VersionKey40BE7EBA": Object {
+      "Description": "S3 key for asset version \\"7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7d\\"",
+      "Type": "String",
+    },
+    "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": Object {
+      "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
+  },
+  "Resources": Object {
+    "Alarm7103F465": Object {
+      "Properties": Object {
+        "AlarmActions": Array [
+          Object {
+            "Ref": "TopicBFC7AF6E",
+          },
+        ],
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Dimensions": Array [
+          Object {
+            "Name": "InstanceId",
+            "Value": Object {
+              "Ref": "InstanceC1063A87",
+            },
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "CPUUtilization",
+        "Namespace": "AWS/EC2",
+        "Period": 60,
+        "Statistic": "Average",
+        "Threshold": 5,
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "InstanceC1063A87": Object {
+      "DependsOn": Array [
+        "InstanceInstanceRoleE9785DE5",
+      ],
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "IamInstanceProfile": Object {
+          "Ref": "InstanceInstanceProfileAB5AEF02",
+        },
+        "ImageId": Object {
+          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
+        "InstanceType": "t3a.nano",
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "SecurityGroupDD263621",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet1Subnet5C2D37C4",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Instance",
+          },
+        ],
+        "UserData": Object {
+          "Fn::Base64": "#!/bin/bash
+amazon-linux-extras install epel -y
+yum install stress-ng tmux htop -y",
+        },
+      },
+      "Type": "AWS::EC2::Instance",
+    },
+    "InstanceInstanceProfileAB5AEF02": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "InstanceInstanceRoleE9785DE5",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "InstanceInstanceRoleE9785DE5": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "ec2.",
+                      Object {
+                        "Ref": "AWS::URLSuffix",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Instance",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "SecurityGroupDD263621": Object {
+      "Properties": Object {
+        "GroupDescription": "testing-stack/SecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:22",
+            "FromPort": 22,
+            "IpProtocol": "tcp",
+            "ToPort": 22,
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "TopicBFC7AF6E": Object {
+      "Type": "AWS::SNS::Topic",
+    },
+    "Vpc8378EB38": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "VpcIGWD7BA715C": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "VpcPrivateSubnet1DefaultRouteBE02A9ED": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "VpcPublicSubnet1NATGateway4D7517AA",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet1RouteTableB2C5B500",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPrivateSubnet1RouteTableAssociation70C59FA6": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet1RouteTableB2C5B500",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPrivateSubnet1Subnet536B997A",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPrivateSubnet1RouteTableB2C5B500": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPrivateSubnet1Subnet536B997A": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.128.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcPrivateSubnet2DefaultRoute060D2087": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "VpcPublicSubnet1NATGateway4D7517AA",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet2RouteTableA678073B",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPrivateSubnet2RouteTableA678073B": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPrivateSubnet2RouteTableAssociationA89CAD56": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPrivateSubnet2RouteTableA678073B",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPrivateSubnet2Subnet3788AAA1": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.192.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcPublicSubnet1DefaultRoute3DA9E72A": Object {
+      "DependsOn": Array [
+        "VpcVPCGWBF912B6E",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "VpcIGWD7BA715C",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet1RouteTable6C95E38E",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPublicSubnet1EIPD7E02669": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "VpcPublicSubnet1NATGateway4D7517AA": Object {
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "VpcPublicSubnet1EIPD7E02669",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet1Subnet5C2D37C4",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "VpcPublicSubnet1RouteTable6C95E38E": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPublicSubnet1RouteTableAssociation97140677": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet1RouteTable6C95E38E",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet1Subnet5C2D37C4",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPublicSubnet1Subnet5C2D37C4": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcPublicSubnet2DefaultRoute97F91067": Object {
+      "DependsOn": Array [
+        "VpcVPCGWBF912B6E",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "VpcIGWD7BA715C",
+        },
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet2RouteTable94F7E489",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "VpcPublicSubnet2RouteTable94F7E489": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "VpcPublicSubnet2RouteTableAssociationDD5762D8": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "VpcPublicSubnet2RouteTable94F7E489",
+        },
+        "SubnetId": Object {
+          "Ref": "VpcPublicSubnet2Subnet691E08A3",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "VpcPublicSubnet2Subnet691E08A3": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.64.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "testing-stack/Vpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "VpcVPCGWBF912B6E": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "VpcIGWD7BA715C",
+        },
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "snslinenotifylambdafun210F422F": Object {
+      "DependsOn": Array [
+        "snslinenotifylambdafunServiceRoleDefaultPolicyB61DCF65",
+        "snslinenotifylambdafunServiceRole8F3E0558",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameters7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7dS3Bucket71E26373",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7dS3VersionKey40BE7EBA",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameters7f571b1e339fc320dc5daaa2a1a23b1bb97be775468ba20f61f6370578d33a7dS3VersionKey40BE7EBA",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "LINE_NOTIFY_TOKEN": "lineNotifyToken",
+          },
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "snslinenotifylambdafunServiceRole8F3E0558",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "snslinenotifylambdafunAllowInvoketestingstackTopic636EF168F0208646": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "snslinenotifylambdafun210F422F",
+            "Arn",
+          ],
+        },
+        "Principal": "sns.amazonaws.com",
+        "SourceArn": Object {
+          "Ref": "TopicBFC7AF6E",
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "snslinenotifylambdafunServiceRole8F3E0558": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "snslinenotifylambdafunServiceRoleDefaultPolicyB61DCF65": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "cloudwatch:Get*",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "snslinenotifylambdafunServiceRoleDefaultPolicyB61DCF65",
+        "Roles": Array [
+          Object {
+            "Ref": "snslinenotifylambdafunServiceRole8F3E0558",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "snslinenotifylambdafunTopic9BE6F86B": Object {
+      "Properties": Object {
+        "Endpoint": Object {
+          "Fn::GetAtt": Array [
+            "snslinenotifylambdafun210F422F",
+            "Arn",
+          ],
+        },
+        "Protocol": "lambda",
+        "TopicArn": Object {
+          "Ref": "TopicBFC7AF6E",
+        },
+      },
+      "Type": "AWS::SNS::Subscription",
+    },
+  },
+}
+`;
