@@ -1,62 +1,63 @@
-# API Reference
+# API Reference <a name="API Reference"></a>
 
-**Classes**
+## Constructs <a name="Constructs"></a>
 
-Name|Description
-----|-----------
-[SnsNotify](#cdk-sns-notify-snsnotify)|*No description*
+### SnsNotify <a name="cdk-sns-notify.SnsNotify"></a>
 
+#### Initializer <a name="cdk-sns-notify.SnsNotify.Initializer"></a>
 
-**Structs**
+```typescript
+import { SnsNotify } from 'cdk-sns-notify'
 
-Name|Description
-----|-----------
-[SnsNotifyProps](#cdk-sns-notify-snsnotifyprops)|*No description*
-
-
-
-## class SnsNotify  <a id="cdk-sns-notify-snsnotify"></a>
-
-
-
-__Implements__: [IConstruct](#constructs-iconstruct), [IConstruct](#aws-cdk-core-iconstruct), [IConstruct](#constructs-iconstruct), [IDependable](#aws-cdk-core-idependable)
-__Extends__: [Construct](#aws-cdk-core-construct)
-
-### Initializer
-
-
-
-
-```ts
 new SnsNotify(scope: Construct, id: string, props: SnsNotifyProps)
 ```
 
-* **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  *No description*
-* **id** (<code>string</code>)  *No description*
-* **props** (<code>[SnsNotifyProps](#cdk-sns-notify-snsnotifyprops)</code>)  *No description*
-  * **lineNotifyToken** (<code>string</code>)  *No description* 
+##### `scope`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotify.parameter.scope"></a>
+
+- *Type:* [`@aws-cdk/core.Construct`](#@aws-cdk/core.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotify.parameter.id"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotify.parameter.props"></a>
+
+- *Type:* [`cdk-sns-notify.SnsNotifyProps`](#cdk-sns-notify.SnsNotifyProps)
+
+---
 
 
 
-### Properties
+#### Properties <a name="Properties"></a>
+
+##### `lambdaSubscription`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotify.property.lambdaSubscription"></a>
+
+- *Type:* [`@aws-cdk/aws-sns-subscriptions.LambdaSubscription`](#@aws-cdk/aws-sns-subscriptions.LambdaSubscription)
+
+---
 
 
-Name | Type | Description 
------|------|-------------
-**lambdaSubscription** | <code>[LambdaSubscription](#aws-cdk-aws-sns-subscriptions-lambdasubscription)</code> | <span></span>
+## Structs <a name="Structs"></a>
 
+### SnsNotifyProps <a name="cdk-sns-notify.SnsNotifyProps"></a>
 
+#### Initializer <a name="[object Object].Initializer"></a>
 
-## struct SnsNotifyProps  <a id="cdk-sns-notify-snsnotifyprops"></a>
+```typescript
+import { SnsNotifyProps } from 'cdk-sns-notify'
 
+const snsNotifyProps: SnsNotifyProps = { ... }
+```
 
+##### `lineNotifyToken`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotifyProps.property.lineNotifyToken"></a>
 
+- *Type:* `string`
 
-
-
-Name | Type | Description 
------|------|-------------
-**lineNotifyToken** | <code>string</code> | <span></span>
+---
 
 
 
