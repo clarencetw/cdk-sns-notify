@@ -21,7 +21,6 @@ build/Release
 cdk.context.json
 cdk.out
 coverage
-images
 jspm_packages/
 junit.xml
 lerna-debug.log*
@@ -42,7 +41,7 @@ yarn-error.log*
 !/.github/workflows/build.yml
 !/.github/workflows/release.yml
 !/.github/workflows/stale.yml
-!/.github/workflows/upgrade-dependencies.yml
+!/.github/workflows/upgrade.yml
 !/.mergify.yml
 !/.npmignore
 !/.projen/deps.json
