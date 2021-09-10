@@ -4,7 +4,7 @@
 
 ### SnsNotify <a name="cdk-sns-notify.SnsNotify"></a>
 
-#### Initializer <a name="cdk-sns-notify.SnsNotify.Initializer"></a>
+#### Initializers <a name="cdk-sns-notify.SnsNotify.Initializer"></a>
 
 ```typescript
 import { SnsNotify } from 'cdk-sns-notify'
