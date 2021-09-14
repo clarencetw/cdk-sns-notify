@@ -36,6 +36,10 @@ new SnsNotify(scope: Construct, id: string, props: SnsNotifyProps)
 
 ##### `lambdaSubscription`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotify.property.lambdaSubscription"></a>
 
+```typescript
+public readonly lambdaSubscription: LambdaSubscription;
+```
+
 - *Type:* [`@aws-cdk/aws-sns-subscriptions.LambdaSubscription`](#@aws-cdk/aws-sns-subscriptions.LambdaSubscription)
 
 ---
@@ -54,6 +58,10 @@ const snsNotifyProps: SnsNotifyProps = { ... }
 ```
 
 ##### `lineNotifyToken`<sup>Required</sup> <a name="cdk-sns-notify.SnsNotifyProps.property.lineNotifyToken"></a>
+
+```typescript
+public readonly lineNotifyToken: string;
+```
 
 - *Type:* `string`
 
