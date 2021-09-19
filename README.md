@@ -37,6 +37,8 @@ alarm.addAlarmAction(new cw_actions.SnsAction(topic));
 const snsLineNotify = new SnsNotify(stack, "sns-line-notify", {
   lineNotifyToken: "lineNotifyToken",
 });
+
+topic.addSubscription(snsLineNotify.lambdaSubscription);
 ```
 
 # Deploy
