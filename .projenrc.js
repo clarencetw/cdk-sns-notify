@@ -10,6 +10,7 @@ const project = new AwsCdkConstructLibrary({
   repository: 'https://github.com/clarencetw/cdk-sns-notify.git',
   keywords: ['aws', 'cdk', 'line notify'],
   defaultReleaseBranch: 'master',
+  minNodeVersion: '14.18.0',
   depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
