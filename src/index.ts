@@ -9,7 +9,7 @@ export interface SnsNotifyProps {
 }
 
 export class SnsNotify extends cdk.Construct {
-  readonly lambdaSubscription: subscriptions.LambdaSubscription
+  readonly lambdaSubscription: subscriptions.LambdaSubscription;
 
   constructor(scope: cdk.Construct, id: string, props: SnsNotifyProps) {
     super(scope, id);
