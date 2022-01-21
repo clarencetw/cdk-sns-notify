@@ -74,7 +74,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: >-
             chore(deps): upgrade dependencies
 
@@ -91,7 +91,7 @@ jobs:
             *Automatically created by projen via the "upgrade-master" workflow*
           branch: github-actions/upgrade-master
           title: "chore(deps): upgrade dependencies"
-          labels: auto-approve,auto-merge
+          labels: auto-approve
           body: >-
             Upgrades project dependencies. See details in [workflow run].
 
