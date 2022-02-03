@@ -8,12 +8,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repository: 'https://github.com/clarencetw/cdk-sns-notify.git',
   keywords: ['aws', 'cdk', 'line notify'],
   defaultReleaseBranch: 'master',
-  minNodeVersion: '14.17.6',
+
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['clarencetw'],
   },
   autoApproveUpgrades: true,
+
   catalog: {
     twitter: 'Clarence_Lin',
     announce: false,
@@ -22,6 +23,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'cdk-sns-notify',
     module: 'cdk_sns_notify',
   },
+  
   cdkDependencies: [
     '@aws-cdk/core',
     '@aws-cdk/aws-iam',
