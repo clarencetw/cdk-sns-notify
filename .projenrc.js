@@ -23,7 +23,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'cdk-sns-notify',
     module: 'cdk_sns_notify',
   },
-  
+
   cdkDependencies: [
     '@aws-cdk/core',
     '@aws-cdk/aws-iam',
